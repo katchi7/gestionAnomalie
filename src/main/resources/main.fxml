@@ -1,30 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.AppBar?>
-<?import com.gluonhq.charm.glisten.control.AutoCompleteTextField?>
-<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
-<?import com.gluonhq.charm.glisten.control.ExpansionPanel.CollapsedPanel?>
-<?import com.gluonhq.charm.glisten.mvc.View?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
-
-<View maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
-   <top>
-      <AppBar titleText="AppBar" BorderPane.alignment="CENTER" />
-   </top>
-   <left>
-      <AutoCompleteTextField BorderPane.alignment="CENTER" />
-   </left>
-   <bottom>
-      <BottomNavigationButton BorderPane.alignment="CENTER" />
-   </bottom>
-   <right>
-      <ExpansionPanel.CollapsedPanel prefHeight="316.0" prefWidth="140.0" BorderPane.alignment="CENTER">
-          <titleNodes>
-              <Label text="TripName" />
-              <Label text="Caribbean cruise" />
-          </titleNodes>
-      </ExpansionPanel.CollapsedPanel>
-   </right>
-</View>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="519.0" prefWidth="262.0" style="-fx-background-color: #393351;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox layoutY="160.0" prefHeight="356.0" prefWidth="262.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="160.0" />
+         </children></AnchorPane>
+      <Pane layoutX="6.0" prefHeight="649.0" prefWidth="1087.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane layoutX="-25.0" layoutY="-178.0" prefHeight="303.0" prefWidth="467.0" rotate="41.6" style="-fx-background-color: #FA2C56; -fx-background-radius: 70;" />
+            <Pane layoutX="76.0" layoutY="106.0" />
+            <Pane layoutX="559.0" layoutY="106.0" prefHeight="190.0" prefWidth="174.0">
+               <children>
+                  <Pane layoutX="-36.0" layoutY="-15.0" prefHeight="61.0" prefWidth="262.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 5;">
+                     <children>
+                        <Label layoutX="41.0" layoutY="17.0" prefHeight="27.0" prefWidth="208.0" text="Gestion d'anomalies" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane layoutX="344.0" layoutY="315.0" prefHeight="202.0" prefWidth="179.0">
+               <children>
+                  <Button layoutX="39.0" layoutY="-78.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="179.0" styleClass="button2" stylesheets="@fullpackstyling.css" />
+                  <Circle layoutX="128.0" layoutY="-8.0" radius="50.0" stroke="#ff924f" strokeType="INSIDE">
+                     <fill>
+                        <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
+                           <stops>
+                              <Stop color="#ff934f" />
+                              <Stop color="WHITE" offset="0.9961685823754789" />
+                              <Stop color="WHITE" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </fill>
+                  </Circle>
+                  <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="110.0" layoutY="-26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Assets/images/icons8_Bill_50px_2.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="45.0" layoutY="74.0" prefHeight="17.0" prefWidth="168.0" text="Liste des signalements" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Bold" size="13.0" />
+                     </font></Label>
+               </children>
+            </Pane>
+            <Button layoutX="743.0" layoutY="242.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="185.0" styleClass="button2" stylesheets="@fullpackstyling.css" />
+            <Circle layoutX="838.0" layoutY="304.0" radius="50.0" strokeType="INSIDE">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
+                     <stops>
+                        <Stop color="#34e063" />
+                        <Stop color="WHITE" offset="0.9961685823754789" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Circle>
+            <ImageView fitHeight="49.0" fitWidth="37.0" layoutX="820.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Assets/images/icons8-new-copy-100.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="755.0" layoutY="391.0" prefHeight="17.0" prefWidth="168.0" text="Créer un signalement" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
