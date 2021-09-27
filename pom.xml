@@ -17,31 +17,17 @@
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>13</version>
+            <version>11.0.2</version>
         </dependency>
-            <dependency>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-controls</artifactId>
-                <version>11</version>
-            </dependency>
-            <dependency>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-graphics </artifactId>
-                <version>11</version>
-                <classifier>win</classifier>
-            </dependency>
-            <dependency>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-graphics </artifactId>
-                <version>11</version>
-                <classifier>linux</classifier>
-            </dependency>
-            <dependency>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-graphics </artifactId>
-                <version>11</version>
-                <classifier>mac</classifier>
-            </dependency>
+        <dependency>
+            <groupId>com.gluonhq</groupId>
+            <artifactId>charm</artifactId>
+            <version>6.0.6</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/charm-glisten-6.0.6.jar</systemPath>
+        </dependency>
+
+
         <dependency>
             <groupId>com.jfoenix</groupId>
             <artifactId>jfoenix</artifactId>
