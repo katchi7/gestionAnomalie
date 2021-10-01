@@ -3,7 +3,6 @@
 <?import com.gluonhq.charm.glisten.control.TextField?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
@@ -35,17 +34,16 @@
 
                             <AnchorPane layoutX="334.0" layoutY="165.0" prefHeight="61.0" prefWidth="529.0">
                     <children>
-                        <TextField layoutX="100.0" layoutY="18.0" prefHeight="26.0" prefWidth="345.0" />
+                                <TextField fx:id="processus" layoutX="100.0" layoutY="18.0" prefHeight="26.0" prefWidth="345.0" />
                     </children>
                 </AnchorPane>
             <JFXListView fx:id="listAnomalies" layoutX="324.0" layoutY="238.0" prefHeight="188.0" prefWidth="611.0" style="-fx-background-color: #2F2B43;" styleClass="listView" stylesheets="@fullpackstyling.css" />
                 <Pane layoutX="974.0" layoutY="316.0" prefHeight="303.0" prefWidth="467.0" rotate="45.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 70;" />
-            <JFXTextArea fx:id="autre" disable="true" layoutX="379.0" layoutY="442.0" prefHeight="74.0" prefWidth="484.0" />
             <AnchorPane layoutX="261.0" layoutY="543.0" prefHeight="92.0" prefWidth="809.0">
                <children>
-                  <JFXButton layoutX="695.0" layoutY="30.0" prefHeight="33.0" prefWidth="81.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 7;" text="Suivant" />
-                  <JFXButton layoutX="40.0" layoutY="30.0" prefHeight="33.0" prefWidth="81.0" style="-fx-background-color: #d4d0cf; -fx-text-fill: #FA2C56; -fx-background-radius: 7;" text="Suivant" />
-                  <JFXButton layoutX="170.0" layoutY="30.0" prefHeight="33.0" prefWidth="81.0" style="-fx-background-color: #daa1ad; -fx-background-radius: 7;" text="Précedent" textFill="#daa1ad" />
+                  <JFXButton fx:id="suivant2" onAction="#handle" layoutX="695.0" layoutY="30.0" prefHeight="33.0" prefWidth="81.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 7;" text="Suivant" />
+                  <JFXButton fx:id="annuler2" onAction="#handle" layoutX="40.0" layoutY="30.0" prefHeight="33.0" prefWidth="81.0" style="-fx-background-color: #d4d0cf; -fx-background-radius: 7;" text="Annuler" />
+                  <JFXButton fx:id="precedent"  onAction="#handle"  layoutX="170.0" layoutY="30.0" prefHeight="33.0" prefWidth="81.0" style="-fx-background-color: #daa1ad; -fx-background-radius: 7;" text="Précedent"  />
                </children>
             </AnchorPane>
 

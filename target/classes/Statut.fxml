@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FormController">
+    <children>
+        <AnchorPane prefHeight="519.0" prefWidth="262.0" style="-fx-background-color: #393351;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <VBox layoutY="160.0" prefHeight="356.0" prefWidth="262.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="160.0" />
+            </children></AnchorPane>
+        <Pane layoutX="6.0" prefHeight="649.0" prefWidth="1087.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Pane layoutX="76.0" layoutY="106.0" />
+                <Pane layoutX="544.0" layoutY="73.0" prefHeight="33.0" prefWidth="174.0">
+                    <children>
+                        <Pane layoutX="-67.0" layoutY="-15.0" prefHeight="61.0" prefWidth="293.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 5;">
+                            <children>
+                                <Label layoutX="16.0" layoutY="17.0" prefHeight="27.0" prefWidth="262.0" text="Statut si l'anomalie est interne" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+                    </children>
+                </Pane>
+
+                <AnchorPane layoutX="334.0" layoutY="165.0" prefHeight="61.0" prefWidth="529.0" />
+                <AnchorPane layoutX="261.0" layoutY="543.0" prefHeight="92.0" prefWidth="809.0">
+                    <children>
+                        <JFXButton fx:id="suivant3" onAction="#handle" layoutX="695.0" layoutY="30.0" prefHeight="33.0" prefWidth="81.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 7;" text="Suivant" />
+                        <JFXButton fx:id="annuler3" onAction="#handle" layoutX="40.0" layoutY="30.0" prefHeight="33.0" prefWidth="81.0" style="-fx-background-color: #d4d0cf; -fx-background-radius: 7;" text="Annuler" />
+                        <JFXButton fx:id="ignorer" onAction="#handle" layoutX="300.0" layoutY="30.0" prefHeight="33.0" prefWidth="81.0" style="-fx-background-color: #d4d0cf; -fx-background-radius: 7;" text="ignorer" />
+                        <JFXButton fx:id="precedent2" onAction="#handle" layoutX="178.0" layoutY="30.0" prefHeight="33.0" prefWidth="81.0" style="-fx-background-color: #d4d0cf; -fx-background-radius: 7;" text="Précedent" />
+                    </children>
+                </AnchorPane>
+                <Pane layoutX="-220.0" layoutY="510.0" prefHeight="303.0" prefWidth="467.0" rotate="-71.6" style="-fx-background-color: #FA2C56; -fx-background-radius: 70;" />
+                <Label layoutX="309.0" layoutY="372.0" prefHeight="27.0" prefWidth="118.0" text="Remarque :" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="295.0" layoutY="244.0" prefHeight="27.0" prefWidth="147.0" text="Non confirmité :" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <JFXRadioButton fx:id="nonConfirmiteTrue" layoutX="520.0" layoutY="249.0" style="-jfx-selected-color: #FA2C56; -fx-text-fill: #5a5a5a;" text="Oui" />
+                <JFXRadioButton fx:id="nonConfirmiteFalse" layoutX="694.0" layoutY="249.0" style="-jfx-selected-color: #FA2C56; -fx-text-fill: #5a5a5a;" text="Non" />
+                <JFXTextArea fx:id="remarqueStatut" layoutX="452.0" layoutY="340.0" prefHeight="92.0" prefWidth="484.0" />
+
+            </children>
+        </Pane>
+        <Pane layoutX="1002.0" layoutY="-27.0" prefHeight="303.0" prefWidth="467.0" rotate="-33.7" style="-fx-background-color: #FA2C56; -fx-background-radius: 70;" />
+    </children>
+</AnchorPane>

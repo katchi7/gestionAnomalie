@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+    <persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
+        <class>model.Action</class>
+        <class>model.Anomalie</class>
+        <class>model.Emeteur</class>
+        <class>model.Fiche</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gestionAnomalies?zeroDateTimeBehavior=convertToNull"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.password" value="Passeword1"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+        </properties>
+    </persistence-unit>
+</persistence>

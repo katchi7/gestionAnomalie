@@ -26,17 +26,17 @@
                   </Pane>
             <AnchorPane layoutX="217.0" layoutY="242.0" prefHeight="320.0" prefWidth="654.0">
                <children>
-                  <JFXRadioButton onAction="#onClickListener" fx:id="interne" layoutX="120.0" layoutY="256.0" style="-fx-text-fill: #d4d0cf; -jfx-selected-color: #FA2C56; -jfx-unselected-color: #d4d0cf;" text="interne" />
+                  <JFXRadioButton onAction="#handle"  fx:id="interne" layoutX="120.0" layoutY="256.0" style="-fx-text-fill: #d4d0cf; -jfx-selected-color: #FA2C56; -jfx-unselected-color: #d4d0cf;" text="interne" />
                   <JFXTextField fx:id="email" layoutX="222.0" layoutY="147.0" labelFloat="true" promptText="Email" prefHeight="26.0" prefWidth="262.0"  />
                   <JFXTextField fx:id="lName" layoutX="100.0" layoutY="43.0" prefHeight="26.0" labelFloat="true" promptText="Nom" prefWidth="179.0" />
                   <JFXTextField fx:id="fName" layoutX="445.0" layoutY="43.0" prefHeight="26.0" labelFloat="true" promptText="Prénom" prefWidth="179.0" />
-                  <JFXRadioButton onAction="#onClickListener" fx:id="externe" layoutX="461.0" layoutY="256.0" style="-fx-text-fill: #d4d0cf; -jfx-selected-color: #FA2C56; -jfx-unselected-color: #d4d0cf;" text="externe" />
+                  <JFXRadioButton onAction="#handle" fx:id="externe" layoutX="461.0" layoutY="256.0" style="-fx-text-fill: #d4d0cf; -jfx-selected-color: #FA2C56; -jfx-unselected-color: #d4d0cf;" text="externe" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="229.0" layoutY="527.0" prefHeight="116.0" prefWidth="721.0">
                <children>
-                  <JFXButton onAction="#onClickListener" fx:id="suivant" layoutX="611.0" layoutY="41.0" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 7;" text="Suivant" textFill="#d4d0cf" />
-                  <JFXButton onAction="#onClickListener" fx:id="annuler" ellipsisString=" #FA2C56" layoutX="43.0" layoutY="41.0" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #d4d0cf; -fx-background-radius: 7; -fx-text-fill: #FA2C56;" text="Annuler" textFill="#fa2c56" />
+                  <JFXButton onAction="#handle" fx:id="suivant" layoutX="611.0" layoutY="41.0" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 7;" text="Suivant" textFill="#d4d0cf" />
+                  <JFXButton onAction="#handle" fx:id="annuler" ellipsisString=" #FA2C56" layoutX="43.0" layoutY="41.0" prefHeight="35.0" prefWidth="75.0" style="-fx-background-color: #d4d0cf; -fx-background-radius: 7; -fx-text-fill: #FA2C56;" text="Annuler" textFill="#fa2c56" />
                </children>
             </AnchorPane>
             </children>
