@@ -15,5 +15,5 @@ public class Anomalie {
     private Integer id;
     @Column(name = "description")
     private String desc;
-    private Boolean freq;
+    private Boolean freq = false;
 }

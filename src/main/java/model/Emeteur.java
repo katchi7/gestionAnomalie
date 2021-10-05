@@ -20,4 +20,8 @@ public class Emeteur {
     private String lName;
     private String email;
     private String userType;
+    public String getFullName(){
+        if(fName==null && lName ==null) return null;
+        else return (fName==null?"":fName)+" "+(lName==null?"":lName);
+    }
 }

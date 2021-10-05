@@ -52,9 +52,9 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-                <JFXRadioButton fx:id="nonConfirmiteTrue" layoutX="520.0" layoutY="249.0" style="-jfx-selected-color: #FA2C56; -fx-text-fill: #5a5a5a;" text="Oui" />
-                <JFXRadioButton fx:id="nonConfirmiteFalse" layoutX="694.0" layoutY="249.0" style="-jfx-selected-color: #FA2C56; -fx-text-fill: #5a5a5a;" text="Non" />
-                <JFXTextArea fx:id="remarqueStatut" layoutX="452.0" layoutY="340.0" prefHeight="92.0" prefWidth="484.0" />
+                <JFXRadioButton onAction="#handle" fx:id="nonConfirmiteTrue" layoutX="520.0" layoutY="249.0" style="-jfx-selected-color: #FA2C56; -fx-text-fill: #5a5a5a;" text="Oui" />
+                <JFXRadioButton onAction="#handle" fx:id="nonConfirmiteFalse" layoutX="694.0" layoutY="249.0" style="-jfx-selected-color: #FA2C56; -fx-text-fill: #5a5a5a;" text="Non" />
+                <JFXTextArea fx:id="remarqueStatut" layoutX="452.0" layoutY="340.0" prefHeight="92.0" prefWidth="484.0" style="-fx-font-size: 16; -fx-text-fill: #FFFF; -jfx-unfocus-color: #d4d0cf; -jfx-focus-color: #FA2C56;" />
 
             </children>
         </Pane>

@@ -1,12 +1,8 @@
 package controllers;
 
-import com.sun.tools.javac.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import tools.Constants;
@@ -27,6 +23,9 @@ public class MainPageController implements Initializable {
     public void handleClick(ActionEvent actionEvent) throws IOException {
         if(actionEvent.getSource()==creerSignalement){
             Constants.navigate("../emeteur.fxml",(Stage) creerSignalement.getScene().getWindow(),"Gestion d'anomalie");
+        }
+        if(actionEvent.getSource()==listeSignalements){
+            Constants.navigate("../list.fxml",(Stage) creerSignalement.getScene().getWindow(),"Gestion d'anomalie");
         }
 
 

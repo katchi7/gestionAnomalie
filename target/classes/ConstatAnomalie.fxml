@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import com.jfoenix.controls.JFXTextField?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FormController">
     <children>
         <AnchorPane prefHeight="519.0" prefWidth="262.0" style="-fx-background-color: #393351;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -34,10 +35,10 @@
 
                             <AnchorPane layoutX="334.0" layoutY="165.0" prefHeight="61.0" prefWidth="529.0">
                     <children>
-                                <TextField fx:id="processus" layoutX="100.0" layoutY="18.0" prefHeight="26.0" prefWidth="345.0" />
+                                <JFXTextField promptText="Precessus" labelFloat="true"  fx:id="processus" layoutX="100.0" layoutY="18.0" prefHeight="26.0" prefWidth="345.0" style="-fx-font-size: 16; -fx-text-fill: #FFFF; -jfx-unfocus-color: #d4d0cf; -jfx-focus-color: #FA2C56;"/>
                     </children>
                 </AnchorPane>
-            <JFXListView fx:id="listAnomalies" layoutX="324.0" layoutY="238.0" prefHeight="188.0" prefWidth="611.0" style="-fx-background-color: #2F2B43;" styleClass="listView" stylesheets="@fullpackstyling.css" />
+            <JFXListView fx:id="listAnomalies" layoutX="324.0" layoutY="238.0" prefHeight="188.0" prefWidth="611.0" style="-fx-background-color: #2F2B43;" styleClass="listView" stylesheets="@Assets/fullpackstyling.css" />
                 <Pane layoutX="974.0" layoutY="316.0" prefHeight="303.0" prefWidth="467.0" rotate="45.0" style="-fx-background-color: #FA2C56; -fx-background-radius: 70;" />
             <AnchorPane layoutX="261.0" layoutY="543.0" prefHeight="92.0" prefWidth="809.0">
                <children>

@@ -37,7 +37,7 @@
             </Pane>
             <Pane layoutX="344.0" layoutY="315.0" prefHeight="202.0" prefWidth="179.0">
                <children>
-                  <Button id="listeSignalements" layoutX="39.0" layoutY="-78.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="179.0" styleClass="button2" stylesheets="@fullpackstyling.css" />
+                  <Button id="listeSignalements" fx:id="listeSignalements" onAction="#handleClick" layoutX="39.0" layoutY="-78.0" mnemonicParsing="false" opacity="0.7" prefHeight="190.0" prefWidth="179.0" styleClass="button2" stylesheets="@Assets/fullpackstyling.css" />
                   <Circle layoutX="128.0" layoutY="-8.0" radius="50.0" stroke="#ff924f" strokeType="INSIDE">
                      <fill>
                         <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">
@@ -60,7 +60,7 @@
                      </font></Label>
                </children>
             </Pane>
-            <Button id="creerSignalement" fx:id="creerSignalement" layoutX="743.0" layoutY="242.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.7" prefHeight="190.0" prefWidth="185.0" styleClass="button2" stylesheets="@fullpackstyling.css" />
+            <Button id="creerSignalement" fx:id="creerSignalement" layoutX="743.0" layoutY="242.0" mnemonicParsing="false" onAction="#handleClick" opacity="0.7" prefHeight="190.0" prefWidth="185.0" styleClass="button2" stylesheets="@Assets/fullpackstyling.css" />
             <Circle layoutX="838.0" layoutY="304.0" radius="50.0" strokeType="INSIDE">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0" startY="0.4952380952380952">

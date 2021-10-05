@@ -6,26 +6,39 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.control.Control;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import lombok.Getter;
+import lombok.Setter;
 import model.Action;
 import model.Anomalie;
 import model.Emeteur;
 import model.Fiche;
+import org.controlsfx.validation.Severity;
+import org.controlsfx.validation.ValidationResult;
+import org.controlsfx.validation.ValidationSupport;
+import org.controlsfx.validation.Validator;
 import services.FicheService;
 import tools.Constants;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class FormController implements Initializable,EventHandler<Event> {
+public class FormController implements Initializable,EventHandler<Event>,Validator<String> {
+    @Getter
+    @Setter
     private static Fiche fiche;
     @FXML
     StackPane root;
@@ -42,7 +55,7 @@ public class FormController implements Initializable,EventHandler<Event> {
     @FXML
     JFXButton suivant;
     @FXML
-    TextField processus;
+    JFXTextField processus;
     @FXML
     JFXButton annuler;
     @FXML
@@ -64,9 +77,11 @@ public class FormController implements Initializable,EventHandler<Event> {
     @FXML JFXRadioButton rebut;
     @FXML JFXRadioButton derogation;
     @FXML JFXTextArea remarqueAction;
+    ValidationSupport validationSupport;
     JFXTextArea autreText;
     JFXRadioButton autre;
     List<JFXRadioButton> radioButtons;
+    public static List<Anomalie> anomalies;
     JFXButton okay;
     int page = 0;
     @Override
@@ -76,13 +91,15 @@ public class FormController implements Initializable,EventHandler<Event> {
         if( suivant3 != null) page = 3;
         if(terminer != null) page = 4;
 
-
+        validationSupport = new ValidationSupport();
         if(listAnomalies!=null){
+            if(anomalies==null)
+            anomalies = FicheService.getInstance().getFreqAnomalie();
             radioButtons = new ArrayList<>();
-            for(int i = 0;i<50;i++){
+            for (Anomalie anomaly : anomalies) {
                 listAnomalies.setOnMouseClicked(this);
                 JFXRadioButton radioButton = new JFXRadioButton();
-                radioButton.setText("item "+i);
+                radioButton.setText(anomaly.getDesc());
                 radioButton.getStyleClass().add("listeViewItem");
                 radioButton.setSelectedColor(Color.valueOf("#FA2C56"));
                 radioButton.setUnSelectedColor(Color.valueOf("#d4d0cf"));
@@ -90,7 +107,6 @@ public class FormController implements Initializable,EventHandler<Event> {
                 AnchorPane anchorPane = new AnchorPane();
                 anchorPane.getChildren().add(radioButton);
                 radioButton.setOnAction(this::handle);
-                System.out.println("item "+i +" Added");
                 listAnomalies.getItems().add(anchorPane);
                 radioButtons.add(radioButton);
             }
@@ -105,14 +121,21 @@ public class FormController implements Initializable,EventHandler<Event> {
             anchorPane.getChildren().add(autre);
             autreText = new JFXTextArea();
             autreText.setMaxHeight(100);
+            autreText.setMaxWidth(500);
+            autreText.setPadding(new Insets(10,0,0,0));
             autreText.setLayoutY(autre.getLayoutY()+autre.getHeight()+10);
             autreText.setDisable(true);
+            autreText.setLayoutY(25);
+            autreText.setLayoutX(50);
+            autreText.setStyle("-fx-font-size: 16; -fx-text-fill: #FFFF; -jfx-unfocus-color: #d4d0cf; -jfx-focus-color: #FA2C56;");
             anchorPane.getChildren().add(autreText);
             listAnomalies.getItems().add(anchorPane);
             radioButtons.add(autre);
         }
         if (fiche==null) fiche = new Fiche();
         fullFill();
+        validationSupport.revalidate();
+        validationSupport.initInitialDecoration();
     }
 
 
@@ -120,7 +143,6 @@ public class FormController implements Initializable,EventHandler<Event> {
 
     @Override
     public void handle(Event actionEvent) {
-        System.out.println("Click");
         Object source = actionEvent.getSource();
         if(source == interne){
             externe.setSelected(false);
@@ -138,6 +160,8 @@ public class FormController implements Initializable,EventHandler<Event> {
             emeteur.setLName(lName.getText());
             emeteur.setUserType((interne.isSelected()?"interne":(externe.isSelected()?"externe":null)));
             fiche.setEmeteur(emeteur);
+            validationSupport.getValidationResult().getErrors().forEach(s-> System.out.println(s.getText()));
+
             //go to next page
             try {
                 Constants.navigate("../ConstatAnomalie.fxml",(Stage) suivant.getScene().getWindow(),"Gestion d'anomalies");
@@ -155,7 +179,6 @@ public class FormController implements Initializable,EventHandler<Event> {
             }
         }
         if(source == listAnomalies ||(radioButtons!=null && radioButtons.contains(source))) {
-            System.out.println("clicked");
             radioButtons.forEach(r->r.setSelected(false));
             if(source == listAnomalies)
             radioButtons.get(listAnomalies.getSelectionModel().getSelectedIndex()).setSelected(true);
@@ -165,27 +188,58 @@ public class FormController implements Initializable,EventHandler<Event> {
         }
         if(autre!=null){
             autreText.setDisable(!autre.isSelected());
+            validationSupport.revalidate();
+            validationSupport.initInitialDecoration();
         }
         if(source==suivant2){
             fiche.setProcess(processus.getText());
             String description = "";
-            if(autre.isSelected()) description = autreText.getText();
+            Anomalie anomalie = null;
+            if(autre.isSelected()){
+                description = autreText.getText();
+                anomalie = new Anomalie();
+                anomalie.setDesc(description);
+
+            }
             else {
                 for (JFXRadioButton radioButton : radioButtons) {
                     if(radioButton.isSelected()){
                         description = radioButton.getText();
+                        int i = radioButtons.indexOf(radioButton);
+                        anomalie = anomalies.get(i);
                         break;
                     }
                 }
             }
-            Anomalie anomalie = new Anomalie();
-            anomalie.setDesc(description);
+
             fiche.setAnomalie(anomalie);
             try {
                 Constants.navigate("../Statut.fxml",(Stage) ((JFXButton)source).getScene().getWindow(),"Statut");
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        if(source == nonConfirmiteFalse){
+            nonConfirmiteFalse.setSelected(true);
+            nonConfirmiteTrue.setSelected(false);
+        }if(source == nonConfirmiteTrue){
+            nonConfirmiteTrue.setSelected(true);
+            nonConfirmiteFalse.setSelected(false);
+        }
+        if(source == rebut){
+            rebut.setSelected(true);
+            derogation.setSelected(false);
+            correction.setSelected(false);
+        }
+        if(source == correction){
+            rebut.setSelected(false);
+            derogation.setSelected(false);
+            correction.setSelected(true);
+        }
+        if(source == derogation){
+            rebut.setSelected(false);
+            derogation.setSelected(true);
+            correction.setSelected(false);
         }
         if(source==suivant3){
             fiche.setNonConfirmite(nonConfirmiteTrue.isSelected() || !nonConfirmiteFalse.isSelected());
@@ -222,6 +276,7 @@ public class FormController implements Initializable,EventHandler<Event> {
             action.setName(correction.isSelected()?correction.getText():(rebut.isSelected()?rebut.getText():(derogation.isSelected()?derogation.getText():null)));
             action.setRemarque(remarqueAction.getText());
             fiche.setAction(action);
+            fiche.setDate(new Date());
             FicheService.getInstance().save(fiche);
             fiche = null;
             JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
@@ -233,7 +288,6 @@ public class FormController implements Initializable,EventHandler<Event> {
             JFXDialog jfxDialog = new JFXDialog(root,jfxDialogLayout, JFXDialog.DialogTransition.TOP);
             jfxDialogLayout.setActions(okay);
             jfxDialog.show();
-            System.out.println(fiche);
         }
         if(source==okay){
             try {
@@ -254,24 +308,30 @@ public class FormController implements Initializable,EventHandler<Event> {
                         interne.setSelected("interne".equals(fiche.getEmeteur().getUserType()));
                         externe.setSelected("externe".equals(fiche.getEmeteur().getUserType()));
                     }
+                    validationSupport.registerValidator( email, true, this );
+                    validationSupport.registerValidator(fName,true,this);
+                    validationSupport.registerValidator(lName,true,this);
                     break;
                 case 2:
                     if(fiche.getAnomalie()!=null ){
                         processus.setText(fiche.getProcess());
-                        boolean selected = false;
-                        for (JFXRadioButton radioButton : radioButtons) {
-                            if(radioButton.getText().equals(fiche.getAnomalie().getDesc())){
-                                radioButton.setSelected(true);
-                                selected = true;
-                                break;
-                            }
+                        if(fiche.getAnomalie().getFreq()!=null && fiche.getAnomalie().getFreq()){
+                            for (JFXRadioButton radioButton : radioButtons) {
+                                if(radioButton.getText().equals(fiche.getAnomalie().getDesc())){
+                                    radioButton.setSelected(true);
+                                    break;
+                                }
 
+                            }
                         }
-                        if(!selected && fiche.getAnomalie()!=null&& fiche.getAnomalie().getDesc()!=null){
+
+                        else{
                             autre.setSelected(true);
                             autreText.setText(fiche.getAnomalie().getDesc());
                         }
                     }
+                    validationSupport.registerValidator(processus,true,this);
+                    validationSupport.registerValidator(autreText,true,this);
                     break;
                 case 3:
                     nonConfirmiteTrue.setSelected((fiche.getNonConfirmite()!=null && fiche.getNonConfirmite()));
@@ -292,5 +352,33 @@ public class FormController implements Initializable,EventHandler<Event> {
             }
         }
 
+    }
+    @Override
+    public ValidationResult apply(Control control, String value) {
+        boolean condition = true;
+        String message = "";
+        if(control==email){
+            condition =
+                    value != null
+                            ? !value
+                            .matches(
+                                    "^[^\\s@]+@([^\\s@.,]+\\.)+[^\\s@.,]{2,}$" )
+                            : value == null;
+
+
+            message = "Not an email";
+        }
+        if(control==fName||control==lName||control == processus|| (control==autreText && autre.isSelected())){
+            condition =
+                    value != null
+                            ? value.isEmpty()
+                            : value == null;
+
+
+            message="This field should not be empty";
+        }
+        if(control==autreText && !autre.isSelected()) condition = false;
+
+        return ValidationResult.fromMessageIf( control, message, Severity.WARNING, condition );
     }
 }

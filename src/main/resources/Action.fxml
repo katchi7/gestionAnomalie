@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FormController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1087.0" style="-fx-background-color: #2F2B43;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.FormController">
     <children>
         <AnchorPane prefHeight="519.0" prefWidth="262.0" style="-fx-background-color: #393351;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -46,10 +46,10 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <JFXTextArea fx:id="remarqueAction" layoutX="145.0" layoutY="239.0" prefHeight="92.0" prefWidth="484.0" />
-                        <JFXRadioButton fx:id="correction" layoutX="520.0" layoutY="84.0" style="-jfx-selected-color: #FA2C56; -fx-text-fill: #5a5a5a;" text="Correction" />
-                        <JFXRadioButton fx:id="rebut" layoutX="301.0" layoutY="84.0" prefHeight="17.0" prefWidth="97.0" style="-jfx-selected-color: #FA2C56; -fx-text-fill: #5a5a5a;" text="Rebut" />
-                        <JFXRadioButton fx:id="derogation" layoutX="95.0" layoutY="84.0" style="-jfx-selected-color: #FA2C56; -fx-text-fill: #5a5a5a;" text="Derogation" />
+                        <JFXTextArea fx:id="remarqueAction" layoutX="145.0" layoutY="193.0" prefHeight="85.0" prefWidth="484.0" style="-fx-font-size: 16; -fx-text-fill: #FFFF; -jfx-unfocus-color: #d4d0cf; -jfx-focus-color: #FA2C56;" />
+                        <JFXRadioButton onAction="#handle" fx:id="correction" layoutX="520.0" layoutY="84.0" style="-jfx-selected-color: #FA2C56; -fx-text-fill: #5a5a5a;" text="Correction" />
+                        <JFXRadioButton onAction="#handle" fx:id="rebut" layoutX="301.0" layoutY="84.0" prefHeight="17.0" prefWidth="97.0" style="-jfx-selected-color: #FA2C56; -fx-text-fill: #5a5a5a;" text="Rebut" />
+                        <JFXRadioButton onAction="#handle" fx:id="derogation" layoutX="95.0" layoutY="84.0" style="-jfx-selected-color: #FA2C56; -fx-text-fill: #5a5a5a;" text="Derogation" />
                         <Label layoutX="27.0" layoutY="212.0" prefHeight="27.0" prefWidth="118.0" text="Remarque :" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="18.0" />
@@ -59,7 +59,6 @@
                   </AnchorPane>
                </children>
             </StackPane>
-
             </children>
         </Pane>
           <Pane layoutX="1002.0" layoutY="-27.0" prefHeight="303.0" prefWidth="467.0" rotate="-33.7" style="-fx-background-color: #FA2C56; -fx-background-radius: 70;" />

@@ -27,9 +27,9 @@
             <AnchorPane layoutX="217.0" layoutY="242.0" prefHeight="320.0" prefWidth="654.0">
                <children>
                   <JFXRadioButton onAction="#handle"  fx:id="interne" layoutX="120.0" layoutY="256.0" style="-fx-text-fill: #d4d0cf; -jfx-selected-color: #FA2C56; -jfx-unselected-color: #d4d0cf;" text="interne" />
-                  <JFXTextField fx:id="email" layoutX="222.0" layoutY="147.0" labelFloat="true" promptText="Email" prefHeight="26.0" prefWidth="262.0"  />
-                  <JFXTextField fx:id="lName" layoutX="100.0" layoutY="43.0" prefHeight="26.0" labelFloat="true" promptText="Nom" prefWidth="179.0" />
-                  <JFXTextField fx:id="fName" layoutX="445.0" layoutY="43.0" prefHeight="26.0" labelFloat="true" promptText="Prénom" prefWidth="179.0" />
+                  <JFXTextField fx:id="email" layoutX="222.0" layoutY="147.0" labelFloat="true" promptText="Email" prefHeight="26.0" prefWidth="262.0"  style="-fx-font-size: 16; -fx-text-fill: #FFFF; -jfx-unfocus-color: #d4d0cf; -jfx-focus-color: #FA2C56;" />
+                  <JFXTextField fx:id="lName" layoutX="100.0" layoutY="43.0" prefHeight="26.0" labelFloat="true" promptText="Nom" prefWidth="179.0" style="-fx-font-size: 16; -fx-text-fill: #FFFF; -jfx-unfocus-color: #d4d0cf; -jfx-focus-color: #FA2C56;" />
+                  <JFXTextField fx:id="fName" layoutX="445.0" layoutY="43.0" prefHeight="26.0" labelFloat="true" promptText="Prénom" prefWidth="179.0" style="-fx-font-size: 16; -fx-text-fill: #FFFF; -jfx-unfocus-color: #d4d0cf; -jfx-focus-color: #FA2C56;" />
                   <JFXRadioButton onAction="#handle" fx:id="externe" layoutX="461.0" layoutY="256.0" style="-fx-text-fill: #d4d0cf; -jfx-selected-color: #FA2C56; -jfx-unselected-color: #d4d0cf;" text="externe" />
                </children>
             </AnchorPane>
