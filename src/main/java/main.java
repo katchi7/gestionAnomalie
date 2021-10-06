@@ -28,7 +28,7 @@ public class main extends Application {
         Scene main = new Scene(parent);
         primaryStage.setScene(main);
         primaryStage.show();
-        primaryStage.setFullScreen(false);
+        primaryStage.setResizable(false);
     }
     @SneakyThrows
     public void initData(){
