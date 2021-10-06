@@ -50,6 +50,7 @@ public class FicheService {
     public void  deleteFiche(Fiche fiche){
         Session session =  dataBroker.getSession().openSession();
         Transaction transaction = session.beginTransaction();
+        if(!fiche.getAnomalie().getFreq())
         session.remove(session.contains(fiche.getAnomalie())?fiche.getAnomalie():session.merge(fiche.getAnomalie()));
         session.remove(session.contains(fiche.getEmeteur())?fiche.getEmeteur():session.merge(fiche.getEmeteur()));
         session.remove(session.contains(fiche.getAction())?fiche.getAction():session.merge(fiche.getAction()));
@@ -57,7 +58,9 @@ public class FicheService {
         transaction.commit();
         session.close();
     }
-    public void imprimer(String path,Fiche fiche) throws IOException {
+    public String imprimer(String path,Fiche fiche) throws IOException {
+
+        path = path+File.separator+"Fiche"+fiche.getId()+".pdf";
 
         PDDocument pdDocument = PDDocument.load(getClass().getResourceAsStream(FICH_PATH));
         PDAcroForm form = pdDocument.getDocumentCatalog().getAcroForm();
@@ -120,14 +123,17 @@ public class FicheService {
             System.out.println(fiche.getAnomalie().getDesc());
             field.setValue(fiche.getAnomalie().getDesc());
         }
-        if(fiche.getNonConfirmite()){
-            checkBox = (PDCheckBox) form.getField("NCTrue");
-            checkBox.check();
+        if(fiche.getNonConfirmite()!=null){
+            if(fiche.getNonConfirmite()){
+                checkBox = (PDCheckBox) form.getField("NCTrue");
+                checkBox.check();
+            }
+            else {
+                checkBox = (PDCheckBox) form.getField("NCFalse");
+                checkBox.check();
+            }
         }
-        else {
-            checkBox = (PDCheckBox) form.getField("NCFalse");
-            checkBox.check();
-        }
+
         if("Rebut".equals(fiche.getAction().getName())){
             checkBox = (PDCheckBox) form.getField("Rebut");
             checkBox.check();
@@ -148,7 +154,8 @@ public class FicheService {
             formField.setReadOnly(true);
         }
         removeEmpty(pdDocument);
-        pdDocument.save(new File(path+"\\Fiche"+fiche.getId()+".pdf"));
+        pdDocument.save(new File(path));
+        return path;
     }
 
 

@@ -3,6 +3,8 @@ package controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import com.jfoenix.controls.JFXDialogLayout;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -16,12 +18,15 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import lombok.SneakyThrows;
 import model.Fiche;
 import services.FicheService;
 import tools.Constants;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -34,6 +39,8 @@ public class ListController implements Initializable, EventHandler<Event> {
     private VBox pnItems;
     @FXML
     private StackPane root;
+    @FXML
+    private JFXButton backButton;
     private List<JFXButton> listSupprimer;
     private List<JFXButton> listmodifier ;
     private List<JFXButton> listImprimer ;
@@ -111,10 +118,36 @@ public class ListController implements Initializable, EventHandler<Event> {
             jfxDialog.show();
 
         }if(listImprimer.contains(source)){
-            FicheService.getInstance().imprimer("C:\\Users\\abder\\Desktop\\fiches", fiches.get(listImprimer.indexOf(source)));
+            DirectoryChooser dirChooser = new DirectoryChooser();
+
+            dirChooser.setTitle("Select a folder");
+
+            String selectedDirPath = dirChooser.showDialog(((JFXButton)source).getScene().getWindow()).getAbsolutePath();
+            Thread thread = new Thread(
+                    new Runnable() {
+                        @SneakyThrows
+                        @Override
+                        public void run() {
+                            String path = FicheService.getInstance().imprimer(selectedDirPath, fiches.get(listImprimer.indexOf(source)));
+                            Platform.setImplicitExit(false);
+                            Platform.runLater(
+                                    () -> {
+                                        showDialog(source,path);
+                                    }
+                            );
+                        }
+                    }
+            );
+            thread.start();
+
         }if(listmodifier.contains(source)){
             FormController.setFiche(fiches.get(listmodifier.indexOf(source)));
+            FormController.setSourcePage("../list.fxml");
             Constants.navigate("../emeteur.fxml",(Stage) pnItems.getScene().getWindow(),"Emeteur");
+        }
+        if(source == backButton){
+
+            Constants.navigate("../main.fxml",(Stage) pnItems.getScene().getWindow(),"Gestion d'anomalies");
         }
     }
     private Node loadNode(Fiche fiche) throws IOException {
@@ -155,4 +188,44 @@ public class ListController implements Initializable, EventHandler<Event> {
         listmodifier.forEach(s->s.setOnAction(this::handle));
         listSupprimer.forEach(s->s.setOnAction(this::handle));
     }
+
+    public void showDialog(Object source,String path){
+        JFXDialogLayout jfxDialogLayout = new JFXDialogLayout();
+        jfxDialogLayout.setBody(new Text("la fiche numéro  "+ fiches.get(listImprimer.indexOf(source)).getId()+ " a été sauvegardé ? "));
+        JFXDialog jfxDialog = new JFXDialog(root,jfxDialogLayout, JFXDialog.DialogTransition.TOP);
+        JFXButton ouvrir = new JFXButton();
+        ouvrir.setText("Ouvrir le fichier");
+        ouvrir.setStyle("-fx-background-color: #FA2C56; -fx-background-radius: 7;");
+        ouvrir.setPrefHeight(30);
+        ouvrir.setPrefWidth(80);
+        ouvrir.setOnAction(new EventHandler<ActionEvent>() {
+            @SneakyThrows
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                jfxDialog.close();
+                Desktop.getDesktop().open(new File(path));
+            }
+        });
+
+        JFXButton annuler = new JFXButton();
+        annuler.setText("Fermer");
+        annuler.setStyle("-fx-background-color: #5f5e5e; -fx-background-radius: 7;");
+        annuler.setPrefHeight(30);
+        annuler.setPrefWidth(80);
+        annuler.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                jfxDialog.close();
+            }
+        });
+        HBox hBox = new HBox();
+
+        hBox.getChildren().add(annuler);
+        hBox.getChildren().add(ouvrir);
+        hBox.setSpacing(5);
+        jfxDialogLayout.setActions(hBox);
+        jfxDialog.show();
+
+    }
+
 }

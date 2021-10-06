@@ -16,6 +16,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.SneakyThrows;
 import model.Action;
 import model.Anomalie;
 import model.Emeteur;
@@ -82,6 +83,9 @@ public class FormController implements Initializable,EventHandler<Event>,Validat
     JFXRadioButton autre;
     List<JFXRadioButton> radioButtons;
     public static List<Anomalie> anomalies;
+    @Getter
+    @Setter
+    public static String sourcePage = "../main.fxml";
     JFXButton okay;
     int page = 0;
     @Override
@@ -141,6 +145,7 @@ public class FormController implements Initializable,EventHandler<Event>,Validat
 
 
 
+    @SneakyThrows
     @Override
     public void handle(Event actionEvent) {
         Object source = actionEvent.getSource();
@@ -172,7 +177,8 @@ public class FormController implements Initializable,EventHandler<Event>,Validat
         }
         if(source == annuler ||source==annuler2 ||source==annuler3 ||source == annuler4){
             try {
-                Constants.navigate("../main.fxml",(Stage) ((JFXButton)source).getScene().getWindow(),"Gestion d'anomalies");
+                Constants.navigate(sourcePage,(Stage) ((JFXButton)source).getScene().getWindow(),"Gestion d'anomalies");
+                sourcePage = "../main.fxml";
                 return;
             } catch (IOException e) {
                 e.printStackTrace();
@@ -291,10 +297,14 @@ public class FormController implements Initializable,EventHandler<Event>,Validat
         }
         if(source==okay){
             try {
-                Constants.navigate("../main.fxml",(Stage) ((JFXButton)source).getScene().getWindow(),"Gestion d'anomalies");
+                Constants.navigate(sourcePage,(Stage) ((JFXButton)source).getScene().getWindow(),"Gestion d'anomalies");
+                sourcePage = "../main.fxml";
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+        if(source==ignorer){
+            Constants.navigate("../Action.fxml",(Stage) ((JFXButton)source).getScene().getWindow(),"Gestion d'anomalies");
         }
     }
     private void fullFill(){
